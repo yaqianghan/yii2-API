@@ -21,8 +21,8 @@ class UsersController extends ActiveController
                 'class' => QueryParamAuth::className(),
                 'tokenParam' => 'token',
                 'optional' => [
-                    'ceshi',
-                    'login',
+//                    'ceshi',
+//                    'login',
                 ],
             ]
         ]);
@@ -31,17 +31,17 @@ class UsersController extends ActiveController
     /**
      * 添加测试用户
      */
-    public function actionCeshi ()
-    {
-//        $user = new User();
-//        $user->generateAuthKey();
-//        $user->setPassword('123456');
-//        $user->username = '111121211';
-//        $user->email = '111@11121111.com';
-//        $user->save(false);
-
-        return \Yii::$app->request->cookies;
-    }
+//    public function actionCeshi ()
+//    {
+////        $user = new User();
+////        $user->generateAuthKey();
+////        $user->setPassword('123456');
+////        $user->username = '111121211';
+////        $user->email = '111@11121111.com';
+////        $user->save(false);
+//
+//        return \Yii::$app->request->cookies;
+//    }
 
 
     public function actionLogin()
@@ -61,10 +61,14 @@ class UsersController extends ActiveController
 
 
 
-    public function actionCeshi1()
+    public function actionCeshi($token)
     {
-        $result = User::find()->all();
-        return $result;
+        $user = User::findIdentityByAccessToken($token);
+        return [
+            'id' => $user->id,
+            'username' => $user->username,
+            'email' => $user->email,
+        ];
     }
 
 }
