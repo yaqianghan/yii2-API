@@ -16,14 +16,15 @@ return [
             'class' => 'api\modules\v1\Module',
         ],
     ],
-    'response' => [
-        'class' => 'yii\web\Response',
-        'on beforeSend' => function ($event) {
-            $response = $event->sender;
-            $response->format = yii\web\Response::FORMAT_JSON;
-        },
-    ],
+
     'components' => [
+        'response' => [
+            'class' => 'yii\web\Response',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $response->format = yii\web\Response::FORMAT_JSON;
+            },
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -60,7 +61,7 @@ return [
                     'extraPatterns' => [
                         'POST login' => 'login',
                         'GET signup-test' => 'signup-test',
-                        'POST ceshi' => 'ceshi',
+                        'GET ceshi' => 'ceshi',
                     ]
                 ],
             ],
