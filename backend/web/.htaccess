@@ -1,0 +1,5 @@
+# 将 RewriteEngine 模式打开 
+RewriteEngine On 
+# Rewrite 系统规则请勿修改 
+RewriteRule ^p/([0-9]+)\.html$ index.php?post_id=$1
+RewriteRule ^u-(username|uid)-(.+)\.html$ space.php?$1=$2

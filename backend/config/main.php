@@ -13,11 +13,23 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+
+        'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-red',
+                ],
+            ],
+        ],
+
+
+
+
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'backend\models\UserBackend',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],

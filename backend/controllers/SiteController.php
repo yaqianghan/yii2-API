@@ -8,7 +8,7 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 
 /**
- * Site controller
+ * Site controllers
  */
 class SiteController extends Controller
 {
@@ -18,20 +18,22 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
+            'myBehavior' => \backend\components\MyBehavior::className(),
+
+//            'access' => [
+//                'class' => AccessControl::className(),
+//                'rules' => [
+//                    [
+//                        'actions' => ['login', 'error'],
+//                        'allow' => true,
+//                    ],
+//                    [
+//                        'actions' => ['logout', 'index'],
+//                        'allow' => true,
+//                        'roles' => ['@'],
+//                    ],
+//                ],
+//            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -60,7 +62,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        Yii::$app->redis->set('test','111');  //设置redis缓存
+        echo Yii::$app->redis->get('test');   //读取redis缓存
+        exit;
+        return $this->render('index');  
     }
 
     /**
